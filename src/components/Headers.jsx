@@ -7,6 +7,7 @@ const menuItems = [
   { link: "/introduce", label: "Giới thiệu" },
   { link: "/player", label: "Cầu thủ" },
   { link: "/contact", label: "Liên hệ" },
+    { link: "/admin", label: "Quản Lý" },
 ];
 
 const Headers = () => {
