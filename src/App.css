@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+.card-player {
+  width: 14rem;
+  height: 19rem;
+  background-color: white;
+  position: relative;
+  padding: 1rem;
+  border-top-left-radius:1rem ;
+    border-top-right-radius:1rem ;
+}
+.shirt-number {
+position: absolute;
+    top: -1.5rem;
+    left: 0.5rem;
+    font-size: 6rem;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    color: #dbdbdb;
+}
+
+.name-player {
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+.postion-player {
+    font-weight: 700;
+       font-family: "Oswald", sans-serif;
+       color: rgb(246, 210, 5);
+       font-size: 20px;
+}
+.card-list {
+  gap: 7rem;
+}
+.card-player {
+  position: relative;
+  z-index: 0;
+}
+
+/* Tạo lớp nền chạy từ trái qua phải */
+.card-player::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: navy;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
+  z-index: -1;
+    border-top-left-radius:1rem ;
+    border-top-right-radius:1rem ;
+}
+
+/* Khi hover, lớp nền mở rộng ra từ trái */
+.card-player:hover::before {
+  transform: scaleX(0.7);
+}
+
+.card-player:hover .shirt-number {
+  color: #fff;
+}
+.photo-player {
+  position: absolute;
+  bottom: 0;
+  height: 23rem;
+  right: -3rem;
+}
+.bg-player {
+  width: 100%;
+  background: url('./assets/bg-player.png') center/cover;
+}
+
+
+
+.admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 21, 41, 0.9), rgba(0, 21, 41, 0.9)), 
+              url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+  background-size: cover;
+  padding: 20px;
+}
+
+.admin-container .ant-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-container .ant-form:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: #001529; /* Navy color */
+}
+
+.admin-container .ant-form-item-label > label {
+  color: #001529;
+  font-weight: 500;
+}
+
+.admin-container .ant-input,
+.admin-container .ant-input-password {
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  padding: 10px 15px;
+  transition: all 0.3s;
+}
+
+.admin-container .ant-input:hover,
+.admin-container .ant-input-password:hover {
+  border-color: #001529;
+}
+
+.admin-container .ant-input:focus,
+.admin-container .ant-input-focused,
+.admin-container .ant-input-password:focus,
+.admin-container .ant-input-password-focused {
+  border-color: #001529;
+  box-shadow: 0 0 0 2px rgba(0, 21, 41, 0.2);
+}
+
+.admin-container .ant-input-password-icon {
+  color: #001529;
+}
+
+.admin-container .ant-btn {
+  width: 100%;
+  height: 42px;
+  background-color: #001529;
+  border-color: #001529;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.admin-container .ant-btn:hover,
+.admin-container .ant-btn:focus {
+  background-color: #00284d;
+  border-color: #00284d;
+}
+
+/* Football field pattern effect */
+.admin-container .ant-form:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background-image: 
+    radial-gradient(circle, #001529 2px, transparent 2px),
+    radial-gradient(circle, #001529 2px, transparent 2px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.1;
+}
+.bg-player .btn {
+      width: 25rem;
+    padding-block: 1rem;
+    font-size: 1.5rem;
+    color: white !important;
+}
+.bg-player .btn:hover {
+    background-color: transparent!important;
+    color: white !important;
+}
+.header-detail-player {
+  width: 100%;
+  height: 20rem;
+  background-color: red;
+}
+.main-detail-player-title {
+  height: 74%;
+  background: url('./assets/bg-player.png') center/cover;
+}
+.header-container ul li a.active {
+  color: #2d8515;
+  font-weight: bold;
+}
+.main-sposor {
+  width: 100%;
+  height: 10rem;
+  background-color: rgb(0, 22, 64);
+
+}
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .admin-container .ant-form {
+    padding: 30px 20px;
+  }
+}
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

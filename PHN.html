@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Thunder FC - Đội bóng mạnh nhất</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Thư viện Slick cho slider -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <style>
+        :root {
+            --primary-color: black;
+            --secondary-color: #1a5a96;
+            --accent-color: #2d8515;
+            --grass-color: #2d8515;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10, 46, 82, 0.8), rgba(10, 46, 82, 0.9));
+            z-index: 2;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            position: relative;
+            z-index: 3;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: absolute;
+            top: 0rem;
+            left: 2rem;
+        }
+
+        .logo img {
+            height: 120px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: var(--text-light);
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: var(--text-light);
+        }
+
+        nav {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-color);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+
+        /* Grass Effect */
+        .grass-effect {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--grass-color), transparent);
+            z-index: 4;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: #ffffff;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Players Section */
+        .players {
+            padding: 5rem 0;
+            background-color: #f9f9f9;
+        }
+        .players {
+            background: url('./photo/blue.png') center/cover;
+        }
+        .players .section-container {
+            max-width: 1440px;
+        }
+        /* Slider Players */
+        .players-slider {
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .player-slide {
+            padding: 0 15px;
+            outline: none;
+        }
+
+        .player-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            margin: 0 auto;
+            max-width: 350px;
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .player-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .player-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .player-card:hover .player-image img {
+            transform: scale(1.1);
+        }
+
+        .player-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .player-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .player-info p {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .player-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            z-index: 2;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Slider Navigation */
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .slider-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider-arrow:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Matches Section */
+        .matches {
+            padding: 5rem 0;
+            background-color: #ffffff;
+        }
+
+        .matches-container {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .matches-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .matches-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .matches-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .matches-header h3 {
+            font-size: 1.8rem;
+        }
+
+        .match-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .match-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .match-card:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .match-teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 40%;
+        }
+
+        .team img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-name {
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .match-score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .match-info {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .match-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .match-venue {
+            font-weight: 500;
+            margin-top: 0.3rem;
+        }
+
+        /* News Section */
+        .news {
+            padding: 5rem 0;
+            background-color: #f9f9f9;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .news-excerpt {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: #ffffff;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            background-color: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-text p, .contact-text a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-text a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-form {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(58, 158, 253, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+            position: relative;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-col p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .players-slider .slick-slide {
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .header-container {
+                padding-top: 6rem;
+                padding-bottom: 4rem;
+            }
+            
+            .logo {
+                position: static;
+                margin-bottom: 2rem;
+                justify-content: center;
+            }
+            
+            nav {
+                position: static;
+                margin-bottom: 2rem;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .header-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .player-image {
+                height: 300px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .header-content p {
+                font-size: 1rem;
+            }
+            
+            .player-slide {
+                padding: 0 5px;
+            }
+            
+            .match-teams {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .team {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header với ảnh đội bóng -->
+    <header>
+        <img src="./photo/blackk.png" alt="Đội hình Blue Thunder FC" class="header-image">
+        <!-- <div class="header-overlay"></div> -->
+        <div class="header-container">
+            <div class="logo">
+                <img src="./photo/logofoot.png" alt="Blue Thunder FC Logo">
+                <div class="logo-text">
+                    <h1>PHO HA NOI FC</h1>
+                    <p>Mạnh mẽ - Đoàn kết - Chiến thắng</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Trang chủ</a></li>
+                    <li><a href="#about">Giới thiệu</a></li>
+                    <li><a href="#players">Cầu thủ</a></li>
+                    <li><a href="#matches">Lịch thi đấu</a></li>
+                    <li><a href="#news">Tin tức</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <!-- <div class="header-content" id="home">
+                <h2>Pho Ha Noi FC</h2>
+                <p>Đội bóng với tinh thần thép và lối chơi đẹp mắt. Chúng tôi không chỉ thi đấu vì chiến thắng mà còn vì niềm đam mê bóng đá chân chính.</p>
+                <a href="#players" class="cta-button">Xem đội hình</a>
+            </div> -->
+        </div>
+    </header>
+
+    <!-- Giới thiệu về đội bóng -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Về chúng tôi</h2>
+                <p>Pho Ha Noi FC được thành lập năm 2010 với sứ mệnh mang lại những trận cầu đỉnh cao cho người hâm mộ</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Lịch sử hình thành</h3>
+                    <p>Blue Thunder FC bắt đầu từ một nhóm bạn trẻ đam mê bóng đá tại Hà Nội. Qua nhiều năm phát triển, chúng tôi đã trở thành một trong những đội bóng mạnh nhất khu vực miền Bắc.</p>
+                    <p>Với triết lý "Mạnh mẽ - Đoàn kết - Chiến thắng", đội bóng luôn hướng tới sự phát triển toàn diện cả về thể lực, kỹ thuật và tinh thần đồng đội.</p>
+                    <p>Hiện tại, đội bóng đang tham gia giải đấu V-League và có nhiều cầu thủ trẻ triển vọng trong đội hình.</p>
+                </div>
+                <div class="about-image">
+                    <img src="./photo/teamphoto.jpg" alt="Blue Thunder FC Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Đội hình cầu thủ với slider -->
+
+
+    <!-- Lịch thi đấu -->
+    <section class="matches" id="matches">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Lịch thi đấu</h2>
+                <p>Các trận đấu sắp tới và kết quả gần đây của đội bóng</p>
+            </div>
+            <div class="matches-container">
+                <div class="matches-content">
+                    <div class="matches-header">
+                        <h3>Vòng 5 - Giải V-League 2023</h3>
+                    </div>
+                    <div class="match-cards">
+                        <!-- Trận 1 -->
+                        <div class="match-card">
+                            <div class="match-teams">
+                                <div class="team">
+                                    <img src="https://via.placeholder.com/60" alt="Blue Thunder FC">
+                                    <div class="team-name">Blue Thunder FC</div>
+                                </div>
+                                <div class="match-score">2 - 1</div>
+                                <div class="team">
+                                    <img src="https://via.placeholder.com/60" alt="Red Dragon FC">
+                                    <div class="team-name">Red Dragon FC</div>
+                                </div>
+                            </div>
+                            <div class="match-info">
+                                <div class="match-date">15/06/2023</div>
+                                <div class="match-venue">Sân vận động Hàng Đẫy</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Trận 2 -->
+                        <div class="match-card">
+                            <div class="match-teams">
+                                <div class="team">
+                                    <img src="https://via.placeholder.com/60" alt="Blue Thunder FC">
+                                    <div class="team-name">Blue Thunder FC</div>
+                                </div>
+                                <div class="match-score">VS</div>
+                                <div class="team">
+                                    <img src="https://via.placeholder.com/60" alt="Golden Eagle FC">
+                                    <div class="team-name">Golden Eagle FC</div>
+                                </div>
+                            </div>
+                            <div class="match-info">
+                                <div class="match-date">22/06/2023</div>
+                                <div class="match-venue">Sân vận động Mỹ Đình</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Trận 3 -->
+                        <div class="match-card">
+                            <div class="match-teams">
+                                <div class="team">
+                                    <img src="https://via.placeholder.com/60" alt="Blue Thunder FC">
+                                    <div class="team-name">Blue Thunder FC</div>
+                                </div>
+                                <div class="match-score">VS</div>
+                                <div class="team">
+                                    <img src="https://via.placeholder.com/60" alt="White Tiger FC">
+                                    <div class="team-name">White Tiger FC</div>
+                                </div>
+                            </div>
+                            <div class="match-info">
+                                <div class="match-date">30/06/2023</div>
+                                <div class="match-venue">Sân vận động Thống Nhất</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="players" id="players">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Đội hình cầu thủ</h2>
+                <p>Những gương mặt tiêu biểu tạo nên sức mạnh của Blue Thunder FC</p>
+            </div>
+            
+            <div class="players-slider">
+                <!-- Cầu thủ 1 -->
+                <div class="p-card-ta">
+                    <div class="card-ta">
+                        
+                    </div>
+                    <img src="./photo/tunganh.png" alt="">
+                    <div class="title">Hau Ve Hoang ANh</div>
+                </div>
+                
+                <!-- Cầu thủ 2 -->
+                <div class="player-slide">
+                    <div class="player-card">
+                        <div class="player-image">
+                            <img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Trần Văn B">
+                        </div>
+                        <div class="player-number">10</div>
+                        <div class="player-info">
+                            <h3>Trần Văn B</h3>
+                            <p>Tiền vệ</p>
+                            <div class="player-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">28</div>
+                                    <div class="stat-label">Tuổi</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">5</div>
+                                    <div class="stat-label">Bàn thắng</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Kiến tạo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cầu thủ 3 -->
+                <div class="player-slide">
+                    <div class="player-card">
+                        <div class="player-image">
+                            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Lê Văn C">
+                        </div>
+                        <div class="player-number">1</div>
+                        <div class="player-info">
+                            <h3>Lê Văn C</h3>
+                            <p>Thủ môn</p>
+                            <div class="player-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">30</div>
+                                    <div class="stat-label">Tuổi</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">8</div>
+                                    <div class="stat-label">Trận sạch lưới</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">72%</div>
+                                    <div class="stat-label">Cứu thua</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cầu thủ 4 -->
+                <div class="player-slide">
+                    <div class="player-card">
+                        <div class="player-image">
+                            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Phạm Văn D">
+                        </div>
+                        <div class="player-number">5</div>
+                        <div class="player-info">
+                            <h3>Phạm Văn D</h3>
+                            <p>Hậu vệ</p>
+                            <div class="player-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">26</div>
+                                    <div class="stat-label">Tuổi</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">2</div>
+                                    <div class="stat-label">Bàn thắng</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">89%</div>
+                                    <div class="stat-label">Chuyền chính xác</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cầu thủ 5 -->
+                <div class="player-slide">
+                    <div class="player-card">
+                        <div class="player-image">
+                            <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=770&q=80" alt="Hoàng Văn E">
+                        </div>
+                        <div class="player-number">9</div>
+                        <div class="player-info">
+                            <h3>Hoàng Văn E</h3>
+                            <p>Tiền đạo</p>
+                            <div class="player-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">25</div>
+                                    <div class="stat-label">Tuổi</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">10</div>
+                                    <div class="stat-label">Bàn thắng</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">4</div>
+                                    <div class="stat-label">Kiến tạo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-nav">
+                <div class="slider-arrow prev-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="slider-arrow next-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Tin tức -->
+    <section class="news" id="news">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Tin tức</h2>
+                <p>Cập nhật những thông tin mới nhất về đội bóng</p>
+            </div>
+            <div class="news-grid">
+                <!-- Tin 1 -->
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80" alt="Tin tức 1">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">10/06/2023</div>
+                        <h3 class="news-title">Blue Thunder FC đánh bại Red Dragon FC với tỷ số 2-1</h3>
+                        <p class="news-excerpt">Trong trận đấu đầy kịch tính tại vòng 5 giải V-League, Blue Thunder FC đã có chiến thắng quan trọng trước đối thủ truyền kiếp Red Dragon FC...</p>
+                        <a href="#" class="read-more">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tin 2 -->
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="Tin tức 2">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">05/06/2023</div>
+                        <h3 class="news-title">Tiền đạo Nguyễn Văn A lập cú đúp trong trận giao hữu</h3>
+                        <p class="news-excerpt">Tiền đạo trẻ Nguyễn Văn A tiếp tục chứng tỏ phong độ ấn tượng với 2 bàn thắng trong trận giao hữu chuẩn bị cho vòng 5 giải V-League...</p>
+                        <a href="#" class="read-more">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Tin 3 -->
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tin tức 3">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">01/06/2023</div>
+                        <h3 class="news-title">Blue Thunder FC ký hợp đồng với hậu vệ trẻ triển vọng</h3>
+                        <p class="news-excerpt">CLB Blue Thunder FC vừa chính thức công bố bản hợp đồng với hậu vệ trẻ Phạm Văn D từ lò đào tạo trẻ Hà Nội với thời hạn 3 năm...</p>
+                        <a href="#" class="read-more">Xem thêm <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Liên hệ -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Liên hệ</h2>
+                <p>Liên hệ với chúng tôi để biết thêm thông tin</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Địa chỉ</h4>
+                            <p>Sân vận động Blue Thunder, Quận Thanh Xuân, Hà Nội</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Điện thoại</h4>
+                            <a href="tel:+84987654321">+84 987 654 321</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <a href="mailto:info@bluethunderfc.com">info@bluethunderfc.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Giờ làm việc</h4>
+                            <p>Thứ 2 - Thứ 6: 8:00 - 17:00</p>
+                            <p>Thứ 7: 8:00 - 12:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Họ và tên</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Điện thoại</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội dung</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Gửi liên hệ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Về chúng tôi</h4>
+                <p>Blue Thunder FC là đội bóng chuyên nghiệp thành lập năm 2010, với sứ mệnh mang lại những trận cầu đỉnh cao cho người hâm mộ.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Tin tức mới</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blue Thunder FC đánh bại Red Dragon FC</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tiền đạo Nguyễn Văn A lập cú đúp</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Ký hợp đồng với hậu vệ trẻ</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Chuẩn bị cho trận derby sắp tới</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Đăng ký nhận tin</h4>
+                <p>Đăng ký email để nhận thông tin mới nhất từ đội bóng</p>
+                <form class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Email của bạn" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Blue Thunder FC. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- Thêm thư viện jQuery và Slick -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            // Khởi tạo slider cầu thủ
+            $('.players-slider').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                centerMode: true,
+                centerPadding: '0',
+                arrows: false,
+                dots: false,
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+            
+            // Điều khiển slider bằng nút mũi tên
+            $('.prev-arrow').click(function(){
+                $('.players-slider').slick('slickPrev');
+            });
+            
+            $('.next-arrow').click(function(){
+                $('.players-slider').slick('slickNext');
+            });
+            
+            // Smooth scrolling cho navigation
+            $('nav a').on('click', function(e) {
+                if (this.hash !== '') {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    $('html, body').animate(
+                        {
+                            scrollTop: $(hash).offset().top - 100,
+                        },
+                        800
+                    );
+                }
+            });
+        });
+    </script>
+</body>
+</html>
