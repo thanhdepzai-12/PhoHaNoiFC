@@ -6,6 +6,7 @@ import Slider from "./Slider";
 import temphoto from "../assets/teamphoto.jpg";
 import { useNavigate } from "react-router-dom";
 import { usePlayers } from "../Context/useContext.jsx";
+import Footer from "../components/Footer.jsx";
 
 function MainPage() {
 
@@ -54,7 +55,7 @@ const navigate = useNavigate();
 
       {/* CẦU THỦ NỔI BẬT */}
       <div>
-        <div className="bg-player" id="players">
+        <div className="bg-player py-4" id="players">
           <div
             style={{ gap: "5rem", color: "white", fontFamily: "Oswald" }}
             className="main-detail-player container d-flex flex-column justify-content-center align-items-center"
@@ -85,6 +86,11 @@ const navigate = useNavigate();
             <button onClick={ ()=> navigate('/player')} className="btn btn-warning">Xem Chi Tiết</button>
           </div>
         </div>
+      </div>
+
+
+      <div>
+        <Footer />
       </div>
     </div>
   );
