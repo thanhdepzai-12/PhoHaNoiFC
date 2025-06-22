@@ -32,7 +32,7 @@ const navigate = useNavigate();
             <div className="about-text">
               <h3>Lịch sử hình thành</h3>
               <p>
-                Blue Thunder FC bắt đầu từ một nhóm bạn trẻ đam mê bóng đá tại
+                Pho Ha Noi FC bắt đầu từ một nhóm bạn trẻ đam mê bóng đá tại
                 Hà Nội. Qua nhiều năm phát triển, chúng tôi đã trở thành một
                 trong những đội bóng mạnh nhất khu vực miền Bắc.
               </p>
