@@ -8,6 +8,9 @@ import LoginPage from './pages/LoginPage';
 import PrivateRoute from './components/PrivateRoute';
 import DetailPLayer from './pages/DetailPLayer';
 import DetailPlayerInfo from './pages/DetailPlayerInfo';
+import ContactIcons from './components/ContactIcons.jsx';
+import YoutubeAdminPage from './components/YoutubeAdminPage.jsx';
+import YoutubeDetail from './components/YoutubeDetail.jsx';
 
 function App() {
   return (
@@ -17,12 +20,16 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/player/:id" element={<DetailPlayerInfo />} />
         <Route path="/player" element={<DetailPLayer />} />
+        <Route path="/admin/youtube" element={<YoutubeAdminPage />} />
+        <Route path="/youtube/:id" element={<YoutubeDetail />} />
         <Route path="/admin" element={
           <PrivateRoute>
             <AdminPage />
           </PrivateRoute>
         } />
+     
       </Routes>
+           <ContactIcons />
     </Router>
   );
 }

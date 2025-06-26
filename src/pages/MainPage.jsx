@@ -7,6 +7,8 @@ import temphoto from "../assets/teamphoto.jpg";
 import { useNavigate } from "react-router-dom";
 import { usePlayers } from "../Context/useContext.jsx";
 import Footer from "../components/Footer.jsx";
+import Benefit from "../components/Benefit.jsx";
+import YoutubeDisplay from "../components/YoutubeDisplay.jsx";
 
 function MainPage() {
 
@@ -19,6 +21,7 @@ const navigate = useNavigate();
     <div className="main-container">
       <Slider />
 
+      {/* Thong tin ve Doi bong */}
       <div className="about" id="about">
         <div className="section-container">
           <div className="section-title">
@@ -52,7 +55,9 @@ const navigate = useNavigate();
           </div>
         </div>
       </div>
-
+<div>
+  <Benefit />
+</div>
       {/* CẦU THỦ NỔI BẬT */}
       <div>
         <div className="bg-player py-4" id="players">
@@ -65,8 +70,8 @@ const navigate = useNavigate();
             </h1>
             <div className="card-list d-flex justify-content-center align-items-center flex-wrap">
               {sotwPlayers.map((player) => (
-                <div key={player.id}>
-                  <div className="card-player" title={player.name}>
+                <div key={player.id} onClick={()=> navigate(`/player/${player.id}`)}>
+                  <div  className="card-player" title={player.name}>
                     <img
                       src={player.imageUrl}
                       alt={player.name}
@@ -88,10 +93,19 @@ const navigate = useNavigate();
         </div>
       </div>
 
+ {/* video highlight doi bong */}
+<div>
+  <YoutubeDisplay />
+</div>
 
+
+ {/* footer doi bong */}
       <div>
         <Footer />
       </div>
+
+
+
     </div>
   );
 }

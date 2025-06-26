@@ -1,0 +1,78 @@
+.contact-icons-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+.facebook {
+  background: #3b5998;
+}
+
+.phone {
+  background: #25D366;
+  position: relative;
+}
+
+.tiktok {
+  background: #000;
+}
+
+.phone-tooltip {
+  position: absolute;
+  right: 60px;
+  background: white;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.phone-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-icons-container {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+}
