@@ -1,3 +1,6 @@
+body {
+  overflow-x: hidden !important;
+}
 .header-container {
   position: absolute;
   top: 0rem;
@@ -11,17 +14,18 @@
   justify-content: space-between;
   align-items: center;
   height: 6rem;
-  z-index: 10;
-margin-top: 1rem;
+  z-index: 18;
+
 
 }
 
 /* Logo Styles */
 .logo {
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 101; /* Higher than menu */
+  z-index: 46; /* Higher than menu */
 }
 
 .logo img {
@@ -125,6 +129,7 @@ bottom: -0.3rem;
     display: block;
     position: absolute;
     right: 1rem;
+    top: 0.5rem;
   }
   
   .nav-menu {

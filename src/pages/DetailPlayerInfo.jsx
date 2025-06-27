@@ -9,14 +9,32 @@ const DetailPlayerInfo = () => {
   const { id } = useParams();
   const { players } = usePlayers();
   const player = players.find(p => p.id === id);
- useEffect(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => {
+    const scrollToTop = () => {
+      try {
+        // Cách 1: Scroll mượt hơn
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        
+        // Cách 2: Dự phòng nếu cách 1 không hoạt động
+        setTimeout(() => {
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }, 100);
+      } catch (error) {
+        console.error('Scroll error:', error);
+      }
+    };
+
+    scrollToTop();
   }, []);
   if (!player) return <div className="alert alert-danger mt-3">Không tìm thấy cầu thủ!</div>;
 
   return (
-    <div className="player-detail-container">
-        <div className='header-detail-info-player relative display-flex  justify-content-center align-items-center '>
+    <div className="player-detail-container ">
+        <div style={{position:"relative"}} className='header-detail-info-player  display-flex  justify-content-center align-items-center '>
             <Headers />
         </div>
 <div className='w-100 main-detail-player-info display-flex  justify-content-center align-items-center'>
