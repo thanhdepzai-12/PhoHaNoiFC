@@ -23,7 +23,7 @@ const DetailPLayer = () => {
 
   return (
     <div className='display-flex flex-column justify-content-center align-items-center main-container'>
-      <div className='header-detail-player display-flex flex-column justify-content-center align-items-center '>
+      <div className='relative header-detail-player display-flex flex-column justify-content-center align-items-center '>
         <div style={{background:"#001640", height:"26%"}} className='w-100 display-flex justify-content-center align-items-center'>
             <Headers />
         </div>

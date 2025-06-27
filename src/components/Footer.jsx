@@ -50,14 +50,17 @@ const Footer = () => {
               Cộng đồng
               <span className="position-absolute bottom-0 start-0 bg-danger" style={{ width: '40px', height: '2px' }}></span>
             </h3>
-            <p className="mb-2">Tải ứng dụng</p>
+            <p className="mb-2">VUI VẺ</p>
             <div className="d-flex flex-column gap-2">
-              <a href="#" className="d-block">
-                <img src="https://via.placeholder.com/120x40?text=Google+Play" alt="Google Play" className="img-fluid" style={{ width: '120px' }} />
-              </a>
-              <a href="#" className="d-block">
-                <img src="https://via.placeholder.com/120x40?text=App+Store" alt="App Store" className="img-fluid" style={{ width: '120px' }} />
-              </a>
+   <span>
+         ĐOÀN KẾT
+   </span>
+  
+                 <span>
+  THỂ THAO
+   </span>
+      
+     
             </div>
           </div>
         </div>

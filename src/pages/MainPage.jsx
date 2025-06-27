@@ -9,6 +9,7 @@ import { usePlayers } from "../Context/useContext.jsx";
 import Footer from "../components/Footer.jsx";
 import Benefit from "../components/Benefit.jsx";
 import YoutubeDisplay from "../components/YoutubeDisplay.jsx";
+import Sposor from "../components/Sposor.jsx";
 
 function MainPage() {
 
@@ -98,7 +99,9 @@ const navigate = useNavigate();
   <YoutubeDisplay />
 </div>
 
-
+<div>
+  <Sposor />
+</div>
  {/* footer doi bong */}
       <div>
         <Footer />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { usePlayers } from '../Context/useContext';
 import '../pages/css/DetailPlayer.css'; // Assuming you have a CSS file for styling
@@ -9,12 +9,14 @@ const DetailPlayerInfo = () => {
   const { id } = useParams();
   const { players } = usePlayers();
   const player = players.find(p => p.id === id);
-
+ useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   if (!player) return <div className="alert alert-danger mt-3">Không tìm thấy cầu thủ!</div>;
 
   return (
     <div className="player-detail-container">
-        <div className='header-detail-info-player display-flex  justify-content-center align-items-center '>
+        <div className='header-detail-info-player relative display-flex  justify-content-center align-items-center '>
             <Headers />
         </div>
 <div className='w-100 main-detail-player-info display-flex  justify-content-center align-items-center'>

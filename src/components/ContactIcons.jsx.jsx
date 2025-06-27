@@ -1,29 +1,24 @@
 import React, { useState } from 'react';
-import { FaFacebook, FaPhone, FaTiktok } from 'react-icons/fa';
+import { FaFacebook, FaEnvelope, FaTiktok } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
-import '../pages/css/Contact.css'; // Import CSS styles for icons
+import '../pages/css/Contact.css';
+import { usePlayers } from '../Context/useContext';
 
 const ContactIcons = () => {
-  const [showPhone, setShowPhone] = useState(false);
-  const phoneNumber = '0987654321'; // Thay bằng số thật
-  const location = useLocation();
 
-  // Ẩn hiện icons trên một số route nhất định (tuỳ chọn)
+
+  const location = useLocation();
+const {handleEmailClick, showEmail, setShowEmail} = usePlayers();
   const hiddenRoutes = ['/admin', '/login'];
   if (hiddenRoutes.includes(location.pathname)) return null;
 
-  const handlePhoneClick = () => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    isMobile 
-      ? window.location.href = `tel:${phoneNumber}`
-      : setShowPhone(!showPhone);
-  };
+
 
   return (
     <div className="contact-icons-container">
       {/* Facebook Icon */}
       <a
-        href="https://facebook.com/your-page"
+        href="https://www.facebook.com/ngoc.minhh.3158"
         target="_blank"
         rel="noopener noreferrer"
         className="icon facebook"
@@ -32,15 +27,23 @@ const ContactIcons = () => {
         <FaFacebook />
       </a>
 
-      {/* Phone Icon */}
+      {/* Email Icon - Tối ưu đa nền tảng */}
       <button 
-        className="icon phone"
-        onClick={handlePhoneClick}
-        aria-label="Phone"
-      >
-        <FaPhone />
-        {showPhone && <span className="phone-tooltip">{phoneNumber}</span>}
-      </button>
+      style={{background:"red"}}
+  className="icon email "
+  onClick={handleEmailClick}
+  aria-label="Email"
+>
+  <FaEnvelope />
+  {showEmail && (
+    <span className="email-tooltip">
+      {navigator.userAgent.match(/iPhone|iPad|iPod|Android/i) 
+        ? "Đang mở ứng dụng email..." 
+        : "Đang mở Gmail..."
+      }
+    </span>
+  )}
+</button>
 
       {/* TikTok Icon */}
       <a

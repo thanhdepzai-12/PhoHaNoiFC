@@ -71,8 +71,20 @@ const YoutubeDetail = () => {
             />
           </div>
         </div>
-        <div className="video-description">
-          <b>Mô tả:</b> {video.description}
+       <div className="mb-2" style={{
+  display: '-webkit-box',
+
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+
+  /* Thêm các thuộc tính sau */
+  wordBreak: 'break-word',  // Quan trọng: Xử lý từ dài
+  whiteSpace: 'normal',     // Đè lên mặc định của -webkit-box
+  maxWidth: '100%',         // Chắc chắn không vượt container
+  lineHeight: '1.4',        // Giãn dòng cho dễ đọc
+}}>
+      {video.description}
         </div>
       </div>
       
