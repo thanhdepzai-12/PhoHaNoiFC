@@ -20,7 +20,7 @@ export function PlayersProvider({ children }) {
 
     const handleEmailClick = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const subject = encodeURIComponent("Liên hệ từ website");
+    const subject = encodeURIComponent("Liên hệ về tài trợ đội bóng");
     const body = encodeURIComponent("Xin chào,\n\nTôi muốn liên hệ về tài trợ cho đội bóng");
 
     // Phiên bản tối ưu cho từng nền tảng
