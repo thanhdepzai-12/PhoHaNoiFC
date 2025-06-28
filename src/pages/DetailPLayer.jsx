@@ -4,7 +4,7 @@ import Headers from '../components/Headers';
 import Sposor from '../components/Sposor';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
-
+import '../App.css'; 
 const DetailPLayer = () => {
   const { players } = usePlayers();
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const DetailPLayer = () => {
             margin: "0 auto",
             paddingInline: "5rem"
           }}>
-            <h1 style={{fontSize:"3.5rem", color:"white", fontFamily:"Oswald"}} >ĐỘI HÌNH CHÍNH</h1>
+            <h1 >ĐỘI HÌNH CHÍNH</h1>
           </div>
         </div>
       </div>

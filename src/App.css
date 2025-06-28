@@ -295,7 +295,19 @@ position: absolute;
   align-items: center;
   justify-content: center;
 }
+
+  .main-detail-player-title h1 {
+    font-size: 3.5rem !important;
+    color: white !important;
+    font-family: 'Oswald', sans-serif;
+  }
 @media (max-width: 767.98px) {
+  .main-detail-player-title {
+    padding-inline: 1rem !important;
+  }
+  .main-detail-player-title h1 {
+    font-size: 2.2rem !important;
+  }
   .youtube-row-scroll {
     flex-wrap: nowrap !important;
     overflow-x: auto;

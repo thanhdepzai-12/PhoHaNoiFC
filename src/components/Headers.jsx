@@ -37,20 +37,12 @@ const Headers = () => {
 
   const handleClick = (link, event) => {
     event.preventDefault();
-    
-    // Đóng menu mobile nếu đang mở
     setIsMenuOpen(false);
     
-    // Xử lý riêng cho trang liên hệ
     if (link === "/contact") {
-      handleEmailClick(); // Gọi hàm xử lý email
-      navigate('/'); // Cuyển trang sau khi xử lý email
-    } else {
-      // Các trang khác chuyển trang bình thường
-      navigate(link);
+      handleEmailClick();
     }
-    
-    // Cập nhật trạng thái active
+    navigate(link);
     setActive(link);
   };
 
@@ -68,13 +60,13 @@ const Headers = () => {
         </div>
       </div>
       
-      <div className="hamburger" onClick={toggleMenu}>
+      <button className="hamburger" onClick={toggleMenu} aria-label="Menu">
         {isMenuOpen ? <FaTimes className="menu-icon" /> : <FaBars className="menu-icon" />}
-      </div>
+      </button>
       
       {isMenuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
       
-      <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
+      <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`} style={{ display: isMenuOpen ? 'block' : 'none' }}>
         <ul>
           {menuItems.map((item) => (
             <li key={item.link}>
