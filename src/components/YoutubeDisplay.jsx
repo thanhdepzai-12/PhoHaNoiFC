@@ -72,7 +72,7 @@ const YoutubeDisplay = () => {
   };
 
   return (
-    <div className="container py-4">
+    <div className="container p-4">
       <h2 className="mb-4">Video Hightlight</h2>
 
       {/* Hiển thị video nổi bật to ở trên */}
@@ -174,7 +174,7 @@ const YoutubeDisplay = () => {
                         src={`https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`}
                         alt={v.title}
                         className="card-img-top youtube-thumb"
-                        style={{ height: 105, objectFit: "cover", borderRadius: 10, transition: "transform 0.3s" }}
+                        style={{ height: 100, objectFit: "cover", borderRadius: 10, transition: "transform 0.3s" }}
                       />
                       <div className="card-body mt-2 p-1">
                         <h5

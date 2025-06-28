@@ -8,8 +8,8 @@ const Footer = () => {
         {/* Logo và tên */}
         <div className="d-flex justify-content-start mb-4">
           <div className="d-flex align-items-center gap-1">
-            <img src={logoFoot} alt="Logo" style={{ height: '150px' }} />
-            <h1  style={{ fontSize: '50px' , fontFamily:"Oswald" }} className="h4 mb-0">PHO HA NOI FC</h1>
+            <img className='logo-foot' src={logoFoot} alt="Logo"  />
+            <h1  className="titled-footer h4 mb-0">PHO HA NOI FC</h1>
           </div>
         </div>
 

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import logoFoot from '../assets/logofoot.png';
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../pages/css/Header.css';
+import logoFoot from '../assets/logofoot.png';
 import { usePlayers } from '../Context/useContext';
+import '../pages/css/Header.css';
+import GoogleTranslate from '../Context/GoogleTranslate';
 
 const menuItems = [
   { link: "/", label: "Trang chủ" },
   { link: "/player", label: "Cầu thủ" },
-  { link: "/contact", label: "Liên hệ" },
+  { link: "/contact", label: "Liên hệ" }, // ✅ sửa lại từ /home
   { link: "/admin", label: "Quản Lý" },
 ];
 
@@ -19,17 +20,14 @@ const Headers = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { handleEmailClick } = usePlayers();
 
+  // Cập nhật trạng thái active menu khi route thay đổi
   useEffect(() => {
     setActive(location.pathname);
   }, [location.pathname]);
 
+  // Khóa scroll khi mở menu mobile
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -38,35 +36,38 @@ const Headers = () => {
   const handleClick = (link, event) => {
     event.preventDefault();
     setIsMenuOpen(false);
-    
+
+    // Nếu là contact thì gọi hàm gửi email
     if (link === "/contact") {
-      handleEmailClick();
+      handleEmailClick?.(); // gọi an toàn nếu handleEmailClick có tồn tại
     }
+
+    // Navigate sau cùng để không delay xử lý
     navigate(link);
-    setActive(link);
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(prev => !prev);
   };
 
   return (
     <div className="header-container">
-      <div className="logo">
+      <GoogleTranslate />
+      <div className="logo" onClick={()=> navigate('/')}>
         <img src={logoFoot} alt="FC Pho Sai Gon Logo" />
         <div className="logo-text">
           <h1>PHO HA NOI FC</h1>
           <p>Mạnh mẽ - Đoàn kết - Chiến thắng</p>
         </div>
       </div>
-      
+
       <button className="hamburger" onClick={toggleMenu} aria-label="Menu">
         {isMenuOpen ? <FaTimes className="menu-icon" /> : <FaBars className="menu-icon" />}
       </button>
-      
+
       {isMenuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
-      
-      <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`} style={{ display: isMenuOpen ? 'block' : 'none' }}>
+
+      <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`} style={{ display: isMenuOpen ? 'block' : '' }}>
         <ul>
           {menuItems.map((item) => (
             <li key={item.link}>

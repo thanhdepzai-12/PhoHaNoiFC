@@ -72,7 +72,7 @@ const navigate = useNavigate();
             <div className="card-list d-flex justify-content-center align-items-center flex-wrap">
               {sotwPlayers.map((player) => (
                 <div key={player.id} onClick={()=> navigate(`/player/${player.id}`)}>
-                  <div  className="card-player" title={player.name}>
+                  <div translate="no" className="card-player" title={player.name}>
                     <img
                       src={player.imageUrl}
                       alt={player.name}
@@ -83,7 +83,7 @@ const navigate = useNavigate();
                   <div>
                     <p className="mt-3">
                       <span className="postion-player">{player.position}</span>
-                      <span className="name-player"> {player.name}</span>
+                      <span translate="no" className="name-player"> {player.name}</span>
                     </p>
                   </div>
                 </div>

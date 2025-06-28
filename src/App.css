@@ -8,7 +8,7 @@
   padding: 0 !important;
 }
 .logo {
-  height: 6em;
+
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
@@ -39,7 +39,7 @@ position: absolute;
 }
 
 .name-player {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 20px;
   color: white;
 }
@@ -202,9 +202,8 @@ position: absolute;
     color: white !important;
 }
 .header-detail-player {
-  width: 100%;
-  height: 20rem;
-  background-color: red;
+    width: 100%;
+    height: 20rem;
 }
 .main-detail-player-title {
   height: 74%;
@@ -301,7 +300,74 @@ position: absolute;
     color: white !important;
     font-family: 'Oswald', sans-serif;
   }
+  .main-form {
+
+    max-width: 1280px;
+    width: 100%;
+    padding-top: 6rem;
+    padding-inline: 5rem;
+  }
 @media (max-width: 767.98px) {
+    header {
+        height: auto !important;
+        min-height: auto !important;
+    }
+
+    .main-form {
+    max-width: 1280px;
+    width: 100%;
+    padding-top: 1rem;
+    padding-inline: 1rem;
+  }
+  .postion-player {
+  font-size: 16px !important;
+  }
+  .name-player {
+    font-size: 16px;
+  }
+  .header-detail-player {
+    width: 100%;
+    height: 15rem;
+}
+.main-detail-player-title {
+    height: 80%;
+    background: url(/src/assets/bg-player.png) center / cover;
+}
+  .photo-player {
+  position: absolute;
+  bottom: 0;
+  height: 14.3rem;
+  right: -3rem;
+          z-index: 10;
+
+}
+.card-list {
+    gap: 3.5rem;
+    padding: 1rem;
+}
+.card-list .justify-content-center {
+  justify-content: start !important;
+    /* justify-content: center !important; */
+}
+
+.card-player {
+    width: 8rem;
+    height: 11.6rem;
+    background-color: white;
+    position: relative;
+    padding: 1rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+.shirt-number {
+    position: absolute;
+    top: -1rem;
+    left: 0.5rem;
+    font-size: 4rem;
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    color: #dbdbdb;
+}
   .main-detail-player-title {
     padding-inline: 1rem !important;
   }
@@ -332,10 +398,29 @@ position: absolute;
   100% { transform: rotate(360deg) scale(1); }
 }
 /* Responsive adjustments */
-@media (max-width: 480px) {
+.main-s-l {
+  top: 1.7rem;
+  right: 23rem;
+  z-index: 20;
+  font-size: 17px;
+}
+.main-s-l img {
+  width: 30px;
+}
+@media (max-width: 990px) {
   .admin-container .ant-form {
     padding: 30px 20px;
   }
+  .main-s-l {
+  top: 1.2rem;
+  right: 3rem !important;
+  z-index: 20;
+  font-size: 12px !important;
+}
+.main-s-l img {
+  width: 20px;
+}
+
 }
 
 

@@ -43,7 +43,7 @@ const DetailPlayerInfo = () => {
       {/* Player header */}
       <div className="player-header">
         <h1 className="player-title">{player.position.toUpperCase()}</h1>
-        <h2 className="player-name">{player.name.toUpperCase()}</h2>
+        <h2 translate="no" className="player-name">{player.name.toUpperCase()}</h2>
       </div>
 
       {/* Player info */}
@@ -75,12 +75,8 @@ const DetailPlayerInfo = () => {
                   <div className="stat-label">Bàn thắng</div>
                 </div>
                 <div className="stat-item">
-                  <div className="stat-number yellow-card">{player.yellowCards || 1}</div>
-                  <div className="stat-label">Thẻ vàng</div>
-                </div>
-                <div className="stat-item">
-                  <div className="stat-number red-card">{player.redCards || 1}</div>
-                  <div className="stat-label">Thẻ đỏ</div>
+                  <div className="stat-number yellow-card">{player.foot.toUpperCase() || 'PHẢI'}</div>
+                  <div className="stat-label">Chân Thuận</div>
                 </div>
               </div>
 

@@ -15,11 +15,12 @@ function AdminPage() {
     age: '',
     position: '',
     shirtNumber: '',
+    foot: 'right', // Thêm trường chân thuận, mặc định là 'right' (phải)
     imageUrl: '',
     imagePublicId: '',
   });
   const [imageFile, setImageFile] = useState(null);
-  const [previewImg, setPreviewImg] = useState(null); // Thêm state preview
+  const [previewImg, setPreviewImg] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'players'), (snapshot) => {
@@ -39,6 +40,13 @@ function AdminPage() {
     }));
   };
 
+  // Thêm hàm xử lý select chân thuận
+  const handleFootChange = (e) => {
+    setFormData(prev => ({
+      ...prev,
+      foot: e.target.value
+    }));
+  };
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
@@ -95,27 +103,37 @@ function AdminPage() {
         imagePublicId = img.publicId;
       }
 
+      const playerData = {
+        name: formData.name,
+        age: formData.age,
+        position: formData.position,
+        shirtNumber: formData.shirtNumber,
+        foot: formData.foot, // Thêm chân thuận vào dữ liệu lưu
+        imageUrl,
+        imagePublicId,
+        sotw: editingId ? players.find(p => p.id === editingId)?.sotw || false : false,
+      };
+
       if (editingId) {
-        await updateDoc(doc(db, 'players', editingId), {
-          ...formData,
-          imageUrl,
-          imagePublicId,
-        });
+        await updateDoc(doc(db, 'players', editingId), playerData);
         alert('Cập nhật cầu thủ thành công!');
         setEditingId(null);
       } else {
-        await addDoc(collection(db, 'players'), {
-          ...formData,
-          imageUrl,
-          imagePublicId,
-          sotw: false,
-        });
+        await addDoc(collection(db, 'players'), playerData);
         alert('Thêm cầu thủ thành công!');
       }
 
-      setFormData({ name: '', age: '', position: '', shirtNumber: '', imageUrl: '', imagePublicId: '' });
+      setFormData({ 
+        name: '', 
+        age: '', 
+        position: '', 
+        shirtNumber: '', 
+        foot: 'right', // Reset về mặc định
+        imageUrl: '', 
+        imagePublicId: '' 
+      });
       setImageFile(null);
-      setPreviewImg(null); // Reset preview sau khi submit
+      setPreviewImg(null);
     } catch (error) {
       alert('Có lỗi khi lưu dữ liệu');
     }
@@ -144,11 +162,12 @@ function AdminPage() {
       age: player.age,
       position: player.position,
       shirtNumber: player.shirtNumber,
+      foot: player.foot || 'right', // Lấy giá trị chân thuận từ dữ liệu hiện có
       imageUrl: player.imageUrl || '',
       imagePublicId: player.imagePublicId || '',
     });
     setImageFile(null);
-    setPreviewImg(player.imageUrl || null); // Hiện preview khi sửa
+    setPreviewImg(player.imageUrl || null);
   };
 
   const toggleSOTW = async (player) => {
@@ -170,116 +189,132 @@ function AdminPage() {
   return (
     <div className="admin-app">
       <div className="container py-4 py-lg-5">
-        <div className="row justify-content-center">
-          <div className="col-12 col-lg-10 col-xl-8">
-            <header className="dashboard-header text-center mb-4 mb-lg-5">
-              <h1 className="display-5 fw-bold text-gradient">Quản Lý Cầu Thủ</h1>
-              <p className="lead text-muted opacity-75">Hệ thống quản lý đội bóng chuyên nghiệp</p>
-            </header>
+        {/* ... (giữ nguyên phần header) */}
 
-            <div className="card glass-card mb-5">
-              <div className="card-body p-4 p-lg-5">
-                <h2 className="h4 mb-4">{editingId ? 'Cập Nhật Cầu Thủ' : 'Thêm Cầu Thủ Mới'}</h2>
-                <form onSubmit={handleSubmit}>
-                  <div className="row g-3">
-                    <div className="col-md-6">
-                      <input type="text" className="form-control" name="name" placeholder="Tên cầu thủ" value={formData.name} onChange={handleInputChange} required />
-                    </div>
-                    <div className="col-md-6">
-                      <input type="number" className="form-control" name="age" placeholder="Tuổi" value={formData.age} onChange={handleInputChange} required />
-                    </div>
-                    <div className="col-md-6">
-                      <input type="text" className="form-control" name="position" placeholder="Vị trí" value={formData.position} onChange={handleInputChange} required />
-                    </div>
-                    <div className="col-md-6">
-                      <input type="number" className="form-control" name="shirtNumber" placeholder="Số áo" value={formData.shirtNumber} onChange={handleInputChange} required />
-                    </div>
-                    <div className="col-12">
-                      <input type="file" accept="image/*" className="form-control" onChange={handleImageChange} />
-                      {(previewImg || formData.imageUrl) && (
-                        <img
-                          src={previewImg || formData.imageUrl}
-                          alt="Ảnh cầu thủ"
-                          style={{ maxWidth: 120, borderRadius: 8, marginTop: 10 }}
-                        />
-                      )}
-                    </div>
-                    <div className="col-12">
-                      <div className="d-flex gap-3 mt-3">
-                        <button type="submit" className="btn btn-primary" disabled={loading}>
-                          {loading ? 'Đang xử lý...' : editingId ? 'Cập nhật' : 'Thêm mới'}
-                        </button>
-                        {editingId && (
-                          <button
-                            type="button"
-                            className="btn btn-secondary"
-                            onClick={() => {
-                              setEditingId(null);
-                              setFormData({ name: '', age: '', position: '', shirtNumber: '', imageUrl: '', imagePublicId: '' });
-                              setImageFile(null);
-                              setPreviewImg(null);
-                            }}
-                          >
-                            Hủy
-                          </button>
-                        )}
-                      </div>
-                    </div>
+        <div className="card glass-card mb-5">
+          <div className="card-body p-4 p-lg-5">
+            <h2 className="h4 mb-4">{editingId ? 'Cập Nhật Cầu Thủ' : 'Thêm Cầu Thủ Mới'}</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="row g-3">
+                <div className="col-md-6">
+                  <input type="text" className="form-control" name="name" placeholder="Tên cầu thủ" value={formData.name} onChange={handleInputChange} required />
+                </div>
+                <div className="col-md-6">
+                  <input type="number" className="form-control" name="age" placeholder="Tuổi" value={formData.age} onChange={handleInputChange} required />
+                </div>
+                <div className="col-md-6">
+                  <input type="text" className="form-control" name="position" placeholder="Vị trí" value={formData.position} onChange={handleInputChange} required />
+                </div>
+                <div className="col-md-6">
+                  <input type="number" className="form-control" name="shirtNumber" placeholder="Số áo" value={formData.shirtNumber} onChange={handleInputChange} required />
+                </div>
+                {/* Thêm select chân thuận */}
+                <div className="col-md-6">
+                  <select 
+                    className="form-select" 
+                    name="foot" 
+                    value={formData.foot} 
+                    onChange={handleFootChange}
+                    required
+                  >
+                    <option value="right">Chân phải</option>
+                    <option value="left">Chân trái</option>
+                  </select>
+                </div>
+                <div className="col-12">
+                  <input type="file" accept="image/*" className="form-control" onChange={handleImageChange} />
+                  {(previewImg || formData.imageUrl) && (
+                    <img
+                      src={previewImg || formData.imageUrl}
+                      alt="Ảnh cầu thủ"
+                      style={{ maxWidth: 120, borderRadius: 8, marginTop: 10 }}
+                    />
+                  )}
+                </div>
+                <div className="col-12">
+                  <div className="d-flex gap-3 mt-3">
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                      {loading ? 'Đang xử lý...' : editingId ? 'Cập nhật' : 'Thêm mới'}
+                    </button>
+                    {editingId && (
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => {
+                          setEditingId(null);
+                          setFormData({ 
+                            name: '', 
+                            age: '', 
+                            position: '', 
+                            shirtNumber: '', 
+                            foot: 'right', 
+                            imageUrl: '', 
+                            imagePublicId: '' 
+                          });
+                          setImageFile(null);
+                          setPreviewImg(null);
+                        }}
+                      >
+                        Hủy
+                      </button>
+                    )}
                   </div>
-                </form>
-              </div>
-            </div>
-
-            <div className="card glass-card">
-              <div className="card-body p-4 p-lg-5">
-                <h2 className="h4 mb-4">Danh Sách Cầu Thủ</h2>
-                <div className="table-responsive">
-                  <table className="table table-hover">
-                    <thead className="table-dark">
-                      <tr>
-                        <th>Ảnh</th>
-                        <th>Tên</th>
-                        <th>Tuổi</th>
-                        <th>Vị trí</th>
-                        <th>Số áo</th>
-                        <th>SOTW</th>
-                        <th className="text-end">Thao tác</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {players.map(player => (
-                        <tr key={player.id}>
-                          <td>
-                            {player.imageUrl && (
-                              <img src={player.imageUrl} alt={player.name} style={{ width: 48, height: 48, objectFit: 'cover', borderRadius: '50%' }} />
-                            )}
-                          </td>
-                          <td>{player.name}</td>
-                          <td>{player.age}</td>
-                          <td>{player.position}</td>
-                          <td>{player.shirtNumber}</td>
-                          <td>{player.sotw ? <span style={{ color: "#f7b731", fontSize: 20 }}>★</span> : ""}</td>
-                          <td className="text-end">
-                            <div className="d-flex gap-2 justify-content-end">
-                              <button onClick={() => handleEdit(player)} className="btn btn-sm btn-outline-primary">Sửa</button>
-                              <button onClick={() => handleDelete(player.id)} className="btn btn-sm btn-outline-danger">Xóa</button>
-                              {(!player.sotw && sotwCount >= 4) ? null : (
-                                <button
-                                  onClick={() => toggleSOTW(player)}
-                                  className={`btn btn-sm ${player.sotw ? 'btn-warning' : 'btn-outline-warning'}`}
-                                >
-                                  {player.sotw ? 'Bỏ SOTW ✖' : 'Chọn SOTW ★'}
-                                </button>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <div className="mt-3 text-muted">SOTW hiện tại: {sotwCount}/4</div>
                 </div>
               </div>
+            </form>
+          </div>
+        </div>
+
+        <div className="card glass-card">
+          <div className="card-body p-4 p-lg-5">
+            <h2 className="h4 mb-4">Danh Sách Cầu Thủ</h2>
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead className="table-dark">
+                  <tr>
+                    <th>Ảnh</th>
+                    <th>Tên</th>
+                    <th>Tuổi</th>
+                    <th>Vị trí</th>
+                    <th>Số áo</th>
+                    <th>Chân thuận</th> {/* Thêm cột chân thuận */}
+                    <th>SOTW</th>
+                    <th className="text-end">Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {players.map(player => (
+                    <tr key={player.id}>
+                      <td>
+                        {player.imageUrl && (
+                          <img src={player.imageUrl} alt={player.name} style={{ width: 48, height: 48, objectFit: 'cover', borderRadius: '50%' }} />
+                        )}
+                      </td>
+                      <td>{player.name}</td>
+                      <td>{player.age}</td>
+                      <td>{player.position}</td>
+                      <td>{player.shirtNumber}</td>
+                      <td>{player.foot === 'right' ? 'Phải' : 'Trái'}</td> {/* Hiển thị chân thuận */}
+                      <td>{player.sotw ? <span style={{ color: "#f7b731", fontSize: 20 }}>★</span> : ""}</td>
+                      <td className="text-end">
+                        <div className="d-flex gap-2 justify-content-end">
+                          <button onClick={() => handleEdit(player)} className="btn btn-sm btn-outline-primary">Sửa</button>
+                          <button onClick={() => handleDelete(player.id)} className="btn btn-sm btn-outline-danger">Xóa</button>
+                          {(!player.sotw && sotwCount >= 4) ? null : (
+                            <button
+                              onClick={() => toggleSOTW(player)}
+                              className={`btn btn-sm ${player.sotw ? 'btn-warning' : 'btn-outline-warning'}`}
+                            >
+                              {player.sotw ? 'Bỏ SOTW ✖' : 'Chọn SOTW ★'}
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="mt-3 text-muted">SOTW hiện tại: {sotwCount}/4</div>
             </div>
           </div>
         </div>

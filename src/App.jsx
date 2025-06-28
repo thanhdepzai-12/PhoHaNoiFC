@@ -11,12 +11,18 @@ import DetailPlayerInfo from './pages/DetailPlayerInfo';
 import ContactIcons from './components/ContactIcons.jsx';
 import YoutubeAdminPage from './components/YoutubeAdminPage.jsx';
 import YoutubeDetail from './components/YoutubeDetail.jsx';
+import GoogleTranslate from './Context/GoogleTranslate.jsx';
+import Contact from './pages/Contact.jsx';
+
 
 function App() {
   return (
+
     <Router>
+   
       <Routes>
         <Route path="/" element={<MainPage />} />
+           <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/player/:id" element={<DetailPlayerInfo />} />
         <Route path="/player" element={<DetailPLayer />} />
@@ -31,6 +37,7 @@ function App() {
       </Routes>
            <ContactIcons />
     </Router>
+
   );
 }
 export default App;
