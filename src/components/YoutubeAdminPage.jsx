@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, writeBatch } from 'firebase/firestore';
 import '../pages/css/youtube.css';
+import { useNavigate } from 'react-router-dom';
 
 function YoutubeAdminPage() {
   const [videos, setVideos] = useState([]);
   const [form, setForm] = useState({ youtubeId: '', title: '', description: '' });
   const [editingId, setEditingId] = useState(null);
-
+const navigate = useNavigate();
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'youtube'), (snapshot) => {
       setVideos(
@@ -72,6 +73,10 @@ function YoutubeAdminPage() {
   return (
     <div className="container py-4">
       <h2>Quản lý Video YouTube</h2>
+           <div>
+        <button onClick={()=> navigate('/admin')} className='btn btn-warning mt-5'>upload cầu thủ</button>
+         <button onClick={()=> navigate('/admin/youtube')} className='btn btn-success mt-5'>upload video</button>
+         </div>
       <form onSubmit={handleSubmit} className="mb-4">
         <input
           className="form-control mb-2"

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { addDoc, collection, onSnapshot, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const CLOUDINARY_UPLOAD_PRESET = 'psljoqz8';
 const CLOUDINARY_CLOUD_NAME = 'dzndjuynt';
@@ -15,13 +16,13 @@ function AdminPage() {
     age: '',
     position: '',
     shirtNumber: '',
-    foot: 'right', // Thêm trường chân thuận, mặc định là 'right' (phải)
+    foot: 'phải', // Thêm trường chân thuận, mặc định là 'right' (phải)
     imageUrl: '',
     imagePublicId: '',
   });
   const [imageFile, setImageFile] = useState(null);
   const [previewImg, setPreviewImg] = useState(null);
-
+const navigate = useNavigate();
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'players'), (snapshot) => {
       const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -162,7 +163,7 @@ function AdminPage() {
       age: player.age,
       position: player.position,
       shirtNumber: player.shirtNumber,
-      foot: player.foot || 'right', // Lấy giá trị chân thuận từ dữ liệu hiện có
+      foot: player.foot || 'phải', // Lấy giá trị chân thuận từ dữ liệu hiện có
       imageUrl: player.imageUrl || '',
       imagePublicId: player.imagePublicId || '',
     });
@@ -189,6 +190,10 @@ function AdminPage() {
   return (
     <div className="admin-app">
       <div className="container py-4 py-lg-5">
+        <div>
+        <button onClick={()=> navigate('/admin')} className='btn btn-warning mt-5'>upload cầu thủ</button>
+         <button onClick={()=> navigate('/admin/youtube')} className='btn btn-success mt-5'>upload video</button>
+         </div>
         {/* ... (giữ nguyên phần header) */}
 
         <div className="card glass-card mb-5">
@@ -217,8 +222,8 @@ function AdminPage() {
                     onChange={handleFootChange}
                     required
                   >
-                    <option value="right">Chân phải</option>
-                    <option value="left">Chân trái</option>
+                    <option value="phải">Chân phải</option>
+                    <option value="phải">Chân trái</option>
                   </select>
                 </div>
                 <div className="col-12">

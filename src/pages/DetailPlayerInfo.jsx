@@ -75,7 +75,7 @@ const DetailPlayerInfo = () => {
                   <div className="stat-label">Bàn thắng</div>
                 </div>
                 <div className="stat-item">
-                  <div className="stat-number yellow-card">{player.foot.toUpperCase() || 'PHẢI'}</div>
+                  <div className="stat-number yellow-card">{player.foot || 'PHẢI'}</div>
                   <div className="stat-label">Chân Thuận</div>
                 </div>
               </div>
