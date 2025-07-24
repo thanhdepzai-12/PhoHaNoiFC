@@ -19,3 +19,6 @@ Cách chạy tại chế độ production:
 3. Update file .env.production (nếu cần thiết)
 4. Build dự án: npm run build
 5. Chạy dự án: npm run preview
+TÀI KHOẢN ADMIN LÀ
+mrthanh20069@gmail.com
+12345678
